@@ -70,13 +70,13 @@ function back(){
 /* - - - - - - - - - - - Start of YouTube Song Selector Code - - - - - - - - - - - */
 var playList = [
     "dQw4w9WgXcQ",
-    "33LSiXzjTGA",
+    "g5T2tu3Yky4",
     "dQw4w9WgXcQ",
     "dQw4w9WgXcQ"
 ];
 var playTime = [
     [0,35],
-    [20,76],
+    [29,100],
     [35,59],
     [136,178]
 ];
