@@ -99,6 +99,7 @@ var playTime = [
 var player = null;
 var currentPlay = 0;
 function playV(){
+    $("#btnArea").html('<input type="button" id="playBtn" value="換下一首" onclick="playV()"/>');
     if(player == null){
         player = new YT.Player("player",{
             videoId:playList[currentPlay],
