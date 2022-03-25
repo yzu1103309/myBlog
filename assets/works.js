@@ -113,7 +113,10 @@ function playV(){
             videoId:playList[currentPlay],
             startSeconds:playTime[currentPlay][0],
             endSeconds:playTime[currentPlay][1],
-            suggestedQuality:"hd720"
+            suggestedQuality:"hd720",
+            events:{
+                onReady:onPlayerReady
+            }
         });
     }
     
