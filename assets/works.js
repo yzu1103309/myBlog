@@ -96,7 +96,8 @@ function playV(){
             iv_load_policy:3
             },
             events:{
-                onReady:onPlayerReady
+                onReady:onPlayerReady,
+                onStateChange:onPlayerReady
             }
         });
     }else
@@ -115,9 +116,7 @@ function playV(){
             endSeconds:playTime[currentPlay][1],
             suggestedQuality:"hd720",
         });
-        onPlayerReady();
     }
-    
 }
 function onPlayerReady(){
     $("#VidArea").css("height",$("#VidArea").width() / 16 * 9 + "px");
