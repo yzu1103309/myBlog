@@ -71,21 +71,29 @@ function back(){
 var playList = [
     "64cjM6VL-OI",
     "entVpj_IT6M",
+    "5UMCrq-bBCg",
     "dQw4w9WgXcQ",
     "g5T2tu3Yky4",
     "djV11Xbc914",
+    "ZmDBbnmKpqQ",
     "dQw4w9WgXcQ",
     "aPnqx56V8-0",
+    "c_10qS7amjk",
+    "7aFGaSdTJGU",
     "dQw4w9WgXcQ"
 ];
 var playTime = [
     [0,48],
     [52,88],
+    [73,170],
     [0,35],
     [29,100],
     [20,76],
+    [58,90],
     [35,59],
-    [188,292],
+    [188,290],
+    [27,88],
+    [30,94],
     [136,178]
 ];
 var player = null;
