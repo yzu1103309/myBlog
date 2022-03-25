@@ -114,10 +114,8 @@ function playV(){
             startSeconds:playTime[currentPlay][0],
             endSeconds:playTime[currentPlay][1],
             suggestedQuality:"hd720",
-            events:{
-                onReady:onPlayerReady
-            }
         });
+        onPlayerReady();
     }
     
 }
