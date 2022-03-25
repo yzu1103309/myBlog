@@ -121,7 +121,6 @@ function playV(){
 function onPlayerReady(){
     $("#VidArea").css("height",$("#VidArea").width() / 16 * 9 + "px");
     $("#VTitle").html(player.getVideoData().title);
-    player.playVideo();
 }
 /*
 function onYouTubeIframeAPIReady(){
