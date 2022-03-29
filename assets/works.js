@@ -12,27 +12,55 @@ function create(){
             code += "<div class='oneOpt' id='opt-"+i+"'>"+all[i]+"</div>";
         }
         $("#errorM").html('');
+
+        $("#2ndTitle").addClass("changed");
+        $("#optionArea").addClass("changed");
+        setTimeout(function(){
+        $("#2ndTitle").removeClass("changed");
+        $("#optionArea").removeClass("changed");
+        },1000);
+
         $("#2ndTitle").html("你可以選擇繼續新增，或是開始決定");
         $("#optionArea").html(code);
         $("#btnArea").html('<input type="button" value="繼續新增" style="margin-right:60px;" onclick="back()"/>'+
         '<input type="button" value="開始決定" onclick="start()"/>')
     }else{
+        $("#errorM").addClass("changed");
+        setTimeout(function(){
+        $("#errorM").removeClass("changed");
+        },1000);
+
         $("#errorM").html(" - - - - 請至少輸入三個選項，並將多餘的換行刪除 - - - - ");
     }
 }
 function start(){
+
+    $("#2ndTitle").addClass("changed");
+        setTimeout(function(){
+        $("#2ndTitle").removeClass("changed");
+        },1000);
+
     $("#result").css("margin","0px 0");
     $("#result").html("<br>");
-    $("#2ndTitle").html("請稍後，正在慎重的幫您決定......");
+    $("#2ndTitle").html("請稍後，正在慎重的幫您決定.... ..");
     interval = window.setInterval("choose()",50);
 }
 function choose(){
     // console.log(length);
     if(count == 60){
+        
         $("#opt-"+chosen).css("background-color","#909497");
         chosen = parseInt(Math.random() * all.length);
         $("#opt-"+chosen).css("background-color","#F1948A");
         $("#result").css("margin","50px 0");
+
+        $("#result").addClass("changed");
+        $("#2ndTitle").addClass("changed");
+        setTimeout(function(){
+        $("#result").removeClass("changed");
+        $("#2ndTitle").removeClass("changed");
+        },1000);
+
         $("#result").html("今晚，吃點「"+all[chosen]+"」吧！");
         clearInterval(interval);
         $("#2ndTitle").html("你可以選擇繼續新增，或是開始決定");
@@ -51,6 +79,12 @@ function back(){
     clearInterval(interval);
     $("#result").css("margin","0px 0");
     $("#result").html("<br>");
+    $("#2ndTitle").addClass("changed");
+        $("#optionArea").addClass("changed");
+        setTimeout(function(){
+        $("#2ndTitle").removeClass("changed");
+        $("#optionArea").removeClass("changed");
+        },1000);
     $("#2ndTitle").html("隨機決定今天晚餐！首先，請先自訂選項～（用換行分隔）至少三個選項才能開始喔！");
     $("#optionArea").html('<textarea id="optInput" style="border-radius: 20px; width: 100%; height: 500px; padding: 30px; border: 2px solid black;">');
     var words = "";
@@ -99,6 +133,13 @@ var playTime = [
 var player = null;
 var currentPlay = 0;
 function playV(){
+    $("#VidArea").css("height",$("#VidArea").width() / 16 * 9 + "px");
+    $("#VTitle").addClass("changed");
+    $("#VidArea").addClass("changed");
+    setTimeout(function(){
+        $("#VTitle").removeClass("changed");
+        $("#VidArea").removeClass("changed");
+    },1000);
     if(player == null){
         player = new YT.Player("player",{
             videoId:playList[currentPlay],
@@ -134,56 +175,8 @@ function playV(){
     }
 }
 function onPlayerReady(){
-    $("#VidArea").css("height",$("#VidArea").width() / 16 * 9 + "px");
     $("#VTitle").html(player.getVideoData().title);
 }
-/*
-function onYouTubeIframeAPIReady(){
-    player = new YT.Player("player",{
-        videoId:playList[currentPlay],
-        playerVars:{
-        autoplay:1, //是否自動撥放
-        controls:0, //是否顯示控制項
-        loop:1,
-        start:playTime[currentPlay][0],//開始秒數
-        end:playTime[currentPlay][1],//結束秒數
-        iv_load_policy:3
-        },
-        events:{
-        onReady:onPlayerReady,
-        onStateChange:onPlayerStateChange
-        }
-        });
-}
-function onPlayerReady(event){
-    $("#playBtn").on("click",function(){
-        $("#VTitle").html(player.getVideoData().title);
-        player.playVideo();
-    });
-}
-function onPlayerStateChange(event){
-    if(Math.floor(player.getCurrentTime())==playTime[currentPlay][1]){
-        if(currentPlay<playList.length-1){
-            currentPlay++;
-            player.loadVideoById({
-            videoId:playList[currentPlay],
-            startSeconds:playTime[currentPlay][0],
-            endSeconds:playTime[currentPlay][1],
-            suggestedQuality:"large"
-        });
-        }else{
-            currentPlay=0;
-            player.cueVideoById({
-            videoId:playList[currentPlay],
-            startSeconds:playTime[currentPlay][0],
-            endSeconds:playTime[currentPlay][1],
-            suggestedQuality:"large"
-            });
-        }
-    }
-    $("#VTitle").html(player.getVideoData().title);
-}
-*/
 /* - - - - - - - - - - - End of YouTube Song Selector Code - - - - - - - - - - - */
 
 

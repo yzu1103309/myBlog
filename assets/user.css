@@ -20,16 +20,25 @@
     height: 0;
     text-decoration: none;
 }
-.imgS:hover .onHoverT,.imgS:hover .onHoverT-2{
+.imgS:hover .onHoverT,.imgS:hover .onHoverT-2,.imgS:hover .onHoverT-3{
     display: block;
 }
 .imgS:hover img{
     filter: opacity(15%);
     -webkit-filter: opacity(15%);
 }
-.onHoverT-2{
+.onHoverT-3{
     position: relative; 
     bottom: 78%; 
+    text-align: center; 
+    display: none;
+    color: black;
+    height: 0;
+    text-decoration: none;
+}
+.onHoverT-2{
+    position: relative; 
+    bottom: 67%; 
     text-align: center; 
     display: none;
     color: black;

@@ -7,6 +7,15 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/user.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			.changed{
+				animation: Fade 1s;
+			}
+			@keyframes Fade {
+				0%{opacity: 0;}
+				100%{opacity: 1;}
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -55,8 +64,8 @@
 											<a class="onHoverT">社團活動排程</a>
 										</div>
 										<div class="col-4 col-6-medium col-12-small imgS">
-											<a href="#" class="image fit"><img src="images/pic03.jpg" alt=""></a>
-											<a class="onHoverT">心理測驗</a>
+											<a href="#work3" class="image fit"><img src="images/test.png" alt=""></a>
+											<a class="onHoverT" href="#work3">心理測驗</a>
 										</div>
 										<div class="col-4 col-6-medium col-12-small imgS">
 											<a href="#" class="image fit"><img src="images/pic07.jpg" alt=""></a>
@@ -68,15 +77,19 @@
 										</div>
 										<div class="col-4 col-6-medium col-12-small imgS">
 											<a href="#redirect" onclick='changeURL("http://140.138.242.111/ToDoList")' class="image fit"><img src="images/ToDoList.png" alt=""></a>
-											<a class="onHoverT-2" onclick='changeURL("http://140.138.242.111/ToDoList")' href="#redirect">To Do List<br>（使用後端、個人伺服器）<br>（需要YZU VPN才能連線）</a>
+											<a class="onHoverT-3" onclick='changeURL("http://140.138.242.111/ToDoList")' href="#redirect">To Do List<br>（使用後端、個人伺服器）<br>（需要YZU VPN才能連線）</a>
 										</div>
 										<div class="col-4 col-6-medium col-12-small imgS">
 											<a href="#redirect" class="image fit" onclick='changeURL("http://140.138.242.111/courses")'><img src="images/courses.png" alt=""></a>
-											<a class="onHoverT-2" onclick='changeURL("http://140.138.242.111/courses")' href="#redirect" >通識衝堂比對查詢器<br>（使用後端、個人伺服器）<br>（需要YZU VPN才能連線）</a>
+											<a class="onHoverT-3" onclick='changeURL("http://140.138.242.111/courses")' href="#redirect" >通識衝堂比對查詢器<br>（使用後端、個人伺服器）<br>（需要YZU VPN才能連線）</a>
 										</div>
 										<div class="col-4 col-6-medium col-12-small imgS">
 											<a href="#redirect" onclick='changeURL("http://140.138.242.111/order")' class="image fit"><img src="images/order.png" alt=""></a>
-											<a class="onHoverT-2" onclick='changeURL("http://140.138.242.111/order")' href="#redirect">期末專題 - 點餐管理系統 <br>（使用後端、個人伺服器）<br>（需要YZU VPN才能連線）</a>
+											<a class="onHoverT-3" onclick='changeURL("http://140.138.242.111/order")' href="#redirect">期末專題 - 點餐管理系統 <br>（使用後端、個人伺服器）<br>（需要YZU VPN才能連線）</a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small imgS">
+											<a href="#README" class="image fit"><img src="images/pic08.jpg" alt=""></a>
+											<a class="onHoverT-2" href="#README">README.md<br>（簡介功能基本特色）</a>
 										</div>
 									</div>
 								</section>
@@ -128,17 +141,30 @@
 								</header>
 							</article>
 
+							<article id="work3" class="panel">
+								<header>
+									<h2 style="text-align: center;">你今年的愛情是什麼滋味?</h2>
+									<br><h3 id="question" style="text-align: center; font-weight: bold; transition: 1s;">- - - - - 點擊按鈕開始第一題測驗 - - - - -</h3>
+									<p id="options" style="padding-top: 25px; width:75%; margin: 0 auto; color: #626567;">
+										
+									</p>
+									<div id="testbtn" style="text-align: center; padding-top: 30px;">
+										<input type="button" id="playBtn" value="開始作答" onclick="beginTest()"/>
+									</div>
+									
+								</header>
+							</article>
+
 							<article id="work5" class="panel">
 								<header>
 									<h2 style="text-align: center;">YouTube心情點唱</h2>
-									<br><p id="VTitle" style="text-align: center;">點擊按鈕來播放你的第一首歌</p><br>
+									<br><p id="VTitle" style="text-align: center; height: 25px">點擊按鈕來播放你的第一首歌</p><br>
 									<div id="VidArea" style="width: 80%; margin: 0 auto;">
 										<div id="player" style="width: 100%; height: 100%;"></div>
 									</div>
 									<div id="btnArea" style="text-align: center; padding-top: 30px;">
 										<input type="button" id="playBtn" value="開始點歌" onclick="playV()"/>
 									</div>
-									
 								</header>
 							</article>
 
@@ -157,7 +183,10 @@
 								</header>
 							</article>
 
-
+							<article id="README" class="panel">
+								<!-- Simply set the `src` attribute to your MD file and win -->
+								<zero-md src="https://yzu1103309.github.io/myBlog/README.md"></zero-md>
+							</article>
 					</div>
 
 				<!-- Footer -->
@@ -177,8 +206,13 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script src="assets/works.js"></script>
+			<script src="assets/test.js"></script>
 			<script src="https://www.youtube.com/iframe_api"></script>
+			<!-- Lightweight client-side loader that feature-detects and load polyfills only when necessary -->
+			<script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2/webcomponents-loader.min.js"></script>
 
+			<!-- Load the element definition -->
+			<script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@1/src/zero-md.min.js"></script>
 	</body>
 	<!-- https://hospitable-top-f1b.notion.site/1102-YZU-0b7707bc00ba4b699dedfa5b02422b57 -->
 </html>
