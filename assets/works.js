@@ -124,7 +124,7 @@ var playTime = [
     [0,35],
     [29,100],
     [20,76],
-    [59,90],
+    [60,91],
     [58,90],
     [35,59],
     [188,290],
@@ -177,6 +177,22 @@ function playV(){
     }
 }
 function onPlayerReady(){
+    if(Math.floor(player.getCurrentTime())==playTime[currentPlay][1]){
+        if(currentPlay<playList.length-1)
+        {
+            currentPlay++;
+        }
+        else
+        {
+            currentPlay=0;
+        }
+        player.loadVideoById({
+            videoId:playList[currentPlay],
+            startSeconds:playTime[currentPlay][0],
+            endSeconds:playTime[currentPlay][1],
+            suggestedQuality:"hd720",
+        });
+    }
     $("#VTitle").html(player.getVideoData().title);
 }
 /* - - - - - - - - - - - End of YouTube Song Selector Code - - - - - - - - - - - */
