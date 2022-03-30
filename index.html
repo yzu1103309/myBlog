@@ -51,25 +51,29 @@
 									<h2>作品集</h2>
 								</header>
 								<p>
-									今天晚餐吃啥、社團活動排程、心理測驗、To Do List、通識比對查詢、點餐管理系統。
+									README.md、今天晚餐吃啥、課程內容排程、互動式心理測驗、RPG小遊戲、YouTube心情點唱、To Do List、通識比對查詢、點餐管理系統。
 								</p>
 								<section>
 									<div class="row">
+										<div class="col-4 col-6-medium col-12-small imgS">
+											<a href="#README" class="image fit"><img src="images/README.png" alt=""></a>
+											<a class="onHoverT-2" href="#README">README.md 說明書<br>（簡介功能基本特色）</a>
+										</div>
 										<div class="col-4 col-6-medium col-12-small imgS">
 											<a href="#work1" class="image fit"><img src="images/work1.png" alt="" ></a>
 											<a class="onHoverT" href="#work1">今天晚餐吃什麼</a>
 										</div>
 										<div class="col-4 col-6-medium col-12-small imgS">
-											<a href="#work2" class="image fit"><img src="images/pic02.jpg" alt=""></a>
-											<a class="onHoverT">社團活動排程</a>
+											<a href="#work2" class="image fit"><img src="images/schedule.png" alt=""></a>
+											<a class="onHoverT" href="#work2">課堂內容排程</a>
 										</div>
 										<div class="col-4 col-6-medium col-12-small imgS">
 											<a href="#work3" class="image fit"><img src="images/test.png" alt=""></a>
-											<a class="onHoverT" href="#work3">心理測驗</a>
+											<a class="onHoverT" href="#work3">互動式心理測驗</a>
 										</div>
 										<div class="col-4 col-6-medium col-12-small imgS">
-											<a href="#" class="image fit"><img src="images/pic07.jpg" alt=""></a>
-											<a class="onHoverT">RPG遊戲</a>
+											<a href="#work4" class="image fit"><img src="images/pic07.jpg" alt=""></a>
+											<a class="onHoverT" href="#work4">RPG小遊戲</a>
 										</div>
 										<div class="col-4 col-6-medium col-12-small imgS">
 											<a href="#work5" class="image fit"><img src="images/YouTube.png" alt=""></a>
@@ -87,10 +91,7 @@
 											<a href="#redirect" onclick='changeURL("http://140.138.242.111/order")' class="image fit"><img src="images/order.png" alt=""></a>
 											<a class="onHoverT-3" onclick='changeURL("http://140.138.242.111/order")' href="#redirect">期末專題 - 點餐管理系統 <br>（使用後端、個人伺服器）<br>（需要YZU VPN才能連線）</a>
 										</div>
-										<div class="col-4 col-6-medium col-12-small imgS">
-											<a href="#README" class="image fit"><img src="images/README.png" alt=""></a>
-											<a class="onHoverT-2" href="#README">README.md<br>（簡介功能基本特色）</a>
-										</div>
+										
 									</div>
 								</section>
 							</article>
@@ -141,6 +142,13 @@
 								</header>
 							</article>
 
+							<article id="work2" class="panel">
+								<header>
+									<h2>課堂內容排程</h2>
+									<table id="courseTable" style="width: 80%; margin: 0 auto; margin-top:50px;"></table>
+								</header>
+							</article>
+
 							<article id="work3" class="panel">
 								<header>
 									<h2 style="text-align: center;">你今年的愛情是什麼滋味?</h2>
@@ -152,6 +160,16 @@
 										<input type="button" id="playBtn" value="開始作答" onclick="beginTest()"/>
 									</div>
 									
+								</header>
+							</article>
+
+							<article id="work4" class="panel">
+								<header>
+									<h2>RPG小遊戲</h2>
+									<div>
+										<canvas id="myCanvas" width="600" height="600"></canvas>
+										<p id="talkBox"></p>
+									</div>
 								</header>
 							</article>
 
@@ -207,6 +225,7 @@
 			<script src="assets/js/main.js"></script>
 			<script src="assets/works.js"></script>
 			<script src="assets/test.js"></script>
+			<script src="assets/game.js"></script>
 			<script src="https://www.youtube.com/iframe_api"></script>
 			<!-- Lightweight client-side loader that feature-detects and load polyfills only when necessary -->
 			<script src="assets/js/webcomponents-loader.min.js"></script>

@@ -45,3 +45,9 @@
     height: 0;
     text-decoration: none;
 }
+table tr td{
+    text-align: center;
+    border: 3px solid grey;
+    padding: 15px 0;
+
+}

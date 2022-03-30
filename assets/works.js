@@ -206,3 +206,34 @@ function changeURL(str){
     document.getElementById("URL").setAttribute("value","了解，帶我前往");
 }
 /* - - - - - - - - - - - End of Redirecting Page js - - - - - - - - - - - */
+
+/* - - - - - - - - - - - Start of class scheduler js - - - - - - - - - - - */
+
+var topic = [
+     "環境準備", "國定假日","JavaScript", "Ajax","PHP","SQL","Google Map API"
+    ];
+
+    var startDate = new Date();
+    function setMonthAndDay(startMonth, startDay){
+        startDate.setMonth(startMonth-1,startDay);
+        startDate.setHours(0);
+        startDate.setMinutes(0);
+        startDate.setSeconds(0);
+    }
+    $(function(){
+        $("#courseTable").append("<tr><td>場次</td><td>年份</td><td>時間</td><td>主題</td></tr>");
+        let topicCount = topic.length;
+        let millisecsPerDay = 24*60*60*1000;
+        for(var x=0;x<topicCount;x++){
+            var a = (new Date(startDate.getTime()+7*x*millisecsPerDay)).toLocaleDateString();
+        $("#courseTable").append("<tr>"+
+        `<td>${x+1}</td>`+
+        `<td>${a.match(/\d{4}/)}</td>`+
+        `<td>${a.replace(/\d{4}\//,"")}</td>`+
+        `<td>${topic[x]}</td>`+
+        "</tr>");
+        }
+        });
+setMonthAndDay(12,25);
+
+/* - - - - - - - - - - - End of class scheduler js - - - - - - - - - - - */
