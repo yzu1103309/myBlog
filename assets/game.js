@@ -256,13 +256,13 @@ function moving(){
             }
             ctx.drawImage(imgEnemy, 109,40,100,135,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
             if(currentImgMain.x==0*gridLength&&currentImgMain.y==2*gridLength){
-                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL next time");
+                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
             }
         }else{
             ctx.clearRect(p2[a][0]*gridLength,p2[a][1]*gridLength, gridLength, gridLength);
             ctx.drawImage(imgEnemy, 109,40,100,135,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
             if(currentImgMain.x==p1[a][0]*gridLength&&currentImgMain.y==p1[a][1]*gridLength){
-                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL next time");
+                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
             }
         }
         count[0]++;
@@ -278,7 +278,7 @@ function moving(){
             }
             ctx.drawImage(imgEnemy, 7,40,104,135,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
             if(currentImgMain.x==p2[a][0]*gridLength&&currentImgMain.y==p2[a][1]*gridLength){
-                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL next time");
+                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
             }
         }else{
             ctx.clearRect(p2[a][0]*gridLength,p2[a][1]*gridLength, gridLength, gridLength);
@@ -287,7 +287,7 @@ function moving(){
             }
             ctx.drawImage(imgEnemy, 7,40,104,135,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
             if(currentImgMain.x==p1[a][0]*gridLength&&currentImgMain.y==p1[a][1]*gridLength){
-                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL next time");
+                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
             }
         }
         count[a]++;
@@ -301,18 +301,18 @@ function moving(){
             if(mapArray[p1[a][1]][p1[a][0]] == 7){
                 ctx.drawImage(imgMountain,guard[a][0],guard[a][1],32,32,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
             }
-            ctx.drawImage(imgEnemy, 7,40,104,135,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
+            ctx.drawImage(imgEnemy, 274,55,83,120,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
             if(currentImgMain.x==p2[a][0]*gridLength&&currentImgMain.y==p2[a][1]*gridLength){
-                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL next time");
+                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
             }
         }else{
             ctx.clearRect(p2[a][0]*gridLength,p2[a][1]*gridLength, gridLength, gridLength);
             if(mapArray[p2[a][1]][p2[a][0]] == 7){
                 ctx.drawImage(imgMountain,guard[a-1][0],guard[a-1][1],32,32,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
             }
-            ctx.drawImage(imgEnemy, 7,40,104,135,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
+            ctx.drawImage(imgEnemy, 274,55,83,120,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
             if(currentImgMain.x==p1[a][0]*gridLength&&currentImgMain.y==p1[a][1]*gridLength){
-                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL next time");
+                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
             }
         }
         count[a]++;
@@ -325,18 +325,18 @@ function moving(){
             if(mapArray[p1[a][1]][p1[a][0]] == 7){
                 ctx.drawImage(imgMountain,guard[a][0],guard[a][1],32,32,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
             }
-            ctx.drawImage(imgEnemy, 7,40,104,135,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
+            ctx.drawImage(imgEnemy, 109,40,100,135,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
             if(currentImgMain.x==p2[a][0]*gridLength&&currentImgMain.y==p2[a][1]*gridLength){
-                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL next time");
+                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
             }
         }else{
             ctx.clearRect(p2[a][0]*gridLength,p2[a][1]*gridLength, gridLength, gridLength);
             if(mapArray[p2[a][1]][p2[a][0]] == 7){
                 ctx.drawImage(imgMountain,guard[a-1][0],guard[a-1][1],32,32,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
             }
-            ctx.drawImage(imgEnemy, 7,40,104,135,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
+            ctx.drawImage(imgEnemy, 109,40,100,135,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
             if(currentImgMain.x==p1[a][0]*gridLength&&currentImgMain.y==p1[a][1]*gridLength){
-                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL next time");
+                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
             }
         }
         count[a]++;
@@ -351,7 +351,7 @@ function moving(){
             }
             ctx.drawImage(imgEnemy, 7,40,104,135,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
             if(currentImgMain.x==p2[a][0]*gridLength&&currentImgMain.y==p2[a][1]*gridLength){
-                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL next time");
+                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
             }
         }else{
             ctx.clearRect(p2[a][0]*gridLength,p2[a][1]*gridLength, gridLength, gridLength);
@@ -360,7 +360,7 @@ function moving(){
             }
             ctx.drawImage(imgEnemy, 7,40,104,135,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
             if(currentImgMain.x==p1[a][0]*gridLength&&currentImgMain.y==p1[a][1]*gridLength){
-                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL next time");
+                $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
             }
         }
         count[a]++;
