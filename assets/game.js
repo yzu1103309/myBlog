@@ -23,7 +23,7 @@ $(function(){
     ];
     ctx = $("#myCanvas")[0].getContext("2d");
     imgMain = new Image();
-    imgMain.src = "../images/game/main.png";
+    imgMain.src = "images/game/main.png";
     currentImgMain = {
     "x":0,
     "y":0
@@ -32,9 +32,9 @@ $(function(){
         ctx.drawImage(imgMain, 0,0,86.75,86.75,currentImgMain.x,currentImgMain.y,gridLength,gridLength);
     }
     imgMountain = new Image();
-    imgMountain.src = "../images/game/material.png";
+    imgMountain.src = "images/game/material.png";
     imgEnemy = new Image();
-    imgEnemy.src = "../images/game/Enemy.png";
+    imgEnemy.src = "images/game/Enemy.png";
     imgMountain.onload = function(){
     imgEnemy.onload = function(){
     for(var x in mapArray){
