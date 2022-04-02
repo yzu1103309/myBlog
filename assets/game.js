@@ -445,6 +445,11 @@ function moving(){
     var intervalGame04=window.setInterval(function(){
         var a = 3;
         if(count[a]%2 == 0){
+            if(mapArray[p1[a][1]][p1[a][0]]!=9 && mapArray[p1[a][1]][p1[a][0]]!=6){
+                mapArray[p1[a][1]][p1[a][0]] = 7;
+            }else{
+                mapArray[p1[a][1]][p1[a][0]] = 0;
+            }
             ctx.clearRect(p1[a][0]*gridLength,p1[a][1]*gridLength, gridLength, gridLength);
             if(mapArray[p1[a][1]][p1[a][0]] == 7){
                 ctx.drawImage(imgMountain,guard[a-1][0],guard[a-1][1],32,32,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
@@ -454,7 +459,17 @@ function moving(){
                 die = 1;
                 $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
             }
+            if(mapArray[p2[a][1]][p2[a][0]]!=0 && mapArray[p2[a][1]][p2[a][0]]!=6){
+                mapArray[p2[a][1]][p2[a][0]] = 8;
+            }else{
+                mapArray[p2[a][1]][p2[a][0]] = 9;
+            }
         }else{
+            if(mapArray[p2[a][1]][p2[a][0]]!=9 && mapArray[p2[a][1]][p2[a][0]]!=6){
+                mapArray[p2[a][1]][p2[a][0]] = 7;
+            }else{
+                mapArray[p2[a][1]][p2[a][0]] = 0;
+            }
             ctx.clearRect(p2[a][0]*gridLength,p2[a][1]*gridLength, gridLength, gridLength);
             if(mapArray[p2[a][1]][p2[a][0]] == 7){
                 ctx.drawImage(imgMountain,guard[a-1][0],guard[a-1][1],32,32,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
@@ -463,6 +478,11 @@ function moving(){
             if(currentImgMain.x==p1[a][0]*gridLength&&currentImgMain.y==p1[a][1]*gridLength){
                 die = 1;
                 $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
+            }
+            if(mapArray[p1[a][1]][p1[a][0]]!=0 && mapArray[p1[a][1]][p1[a][0]]!=6){
+                mapArray[p1[a][1]][p1[a][0]] = 8;
+            }else{
+                mapArray[p1[a][1]][p1[a][0]] = 9;
             }
         }
         count[a]++;
