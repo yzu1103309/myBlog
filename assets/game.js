@@ -4,22 +4,22 @@ let imgMountain, imgMain, imgEnemy;
 //ctx - HTML5 Canvas用
 //currentImgMainX, currentImgMainY - 決定主角所在座標
 //imgMountain, imgMain, imgEnemy - 障礙物, 主角, 敵人的圖片物件
-const gridLength = 80;
+const gridLength = 70;
 var total = 0, score = 0;
 var Timer;
 $(function(){
     
-    mapArray = [ //0-可走,1-tree,2-終點,3-敵人,4-rock,5-items,6-moving,7-guarded,8-Entrance
-    [2,1,4,5,1,1,5,0,0,0],
+    mapArray = [ //0-可走,1-tree,2-終點,3-敵人,4-rock,5-items,6-moving,7-guarded,8&9-enemy-on
+    [2,1,4,5,1,1,5,0,0,5],
     [0,0,0,5,0,0,0,0,0,0],
-    [6,4,0,0,1,1,4,5,1,0],
-    [7,0,0,0,4,5,0,6,0,1],
+    [7,4,0,0,1,1,4,5,1,0],
+    [7,0,0,5,4,5,0,6,0,1],
     [4,5,0,0,5,1,0,7,0,0],
-    [6,1,0,5,4,5,1,0,1,0],
+    [6,1,0,5,4,5,1,4,1,5],
     [7,5,1,0,0,0,4,0,0,0],
     [0,7,7,5,0,0,1,0,0,0],
-    [0,4,1,0,1,0,4,0,6,1],
-    [0,0,0,0,5,1,0,0,7,2],
+    [0,4,1,0,1,0,4,0,7,1],
+    [0,0,0,0,5,1,0,0,6,2],
     ];
     ctx = $("#myCanvas")[0].getContext("2d");
     imgMain = new Image();
@@ -40,7 +40,7 @@ $(function(){
     for(var x in mapArray){
         for(var y in mapArray[x]){
             if(mapArray[x][y]==0){
-                var rand = parseInt(Math.random()*30);
+                var rand = parseInt(Math.random()*50);
                 let points = [
                     [96,160],
                     [128,160],
@@ -122,16 +122,12 @@ $(function(){
 
 var playing = 0;
 var sec = 0;
+var pass = 0;
+var die = 0;
 
-//處理使用者按下按鍵
+
+    //處理使用者按下按鍵
 $(document).on("keydown",function(event){
-    if(playing == 0){
-        Timer = window.setInterval(function(){
-            sec++;
-            $("#gameScore").html(`~ ~ Score: ${score}/${total} - - - - - - - - - - - Time: ${sec} ~ ~`);
-        },1000);
-        playing = 1;
-    }
     let targetImg, targetBlock, cutImagePositionY;
     //cutImagePositionX - 決定主角臉朝向哪個方向
     targetImg = { //主角的目標座標
@@ -141,26 +137,55 @@ $(document).on("keydown",function(event){
     targetBlock = { //主角的目標(對應2維陣列)
         "x":-1,
         "y":-1 }
-    event.preventDefault();
+        event.preventDefault();
     //避免鍵盤預設行為發生，如捲動/放大/換頁...
     //判斷使用者按下什麼並推算目標座標
+    if(pass == 0 && die == 0){
     switch(event.code){
         case "ArrowLeft":
+            if(playing == 0){
+                Timer = window.setInterval(function(){
+                    sec++;
+                    $("#gameScore").html(`~ ~ Score: ${score}/${total} - - - - - - - - - - - Time: ${sec} ~ ~`);
+                },1000);
+                playing = 1;
+            }
         targetImg.x = currentImgMain.x - gridLength;
         targetImg.y = currentImgMain.y;
         cutImagePositionY = 86.75;//臉朝左
         break;
         case "ArrowUp":
+            if(playing == 0){
+                Timer = window.setInterval(function(){
+                    sec++;
+                    $("#gameScore").html(`~ ~ Score: ${score}/${total} - - - - - - - - - - - Time: ${sec} ~ ~`);
+                },1000);
+                playing = 1;
+            }
         targetImg.x = currentImgMain.x;
         targetImg.y = currentImgMain.y - gridLength;
         cutImagePositionY = 260.25;//臉朝上
         break;
         case "ArrowRight":
+            if(playing == 0){
+                Timer = window.setInterval(function(){
+                    sec++;
+                    $("#gameScore").html(`~ ~ Score: ${score}/${total} - - - - - - - - - - - Time: ${sec} ~ ~`);
+                },1000);
+                playing = 1;
+            }
         targetImg.x = currentImgMain.x + gridLength;
         targetImg.y = currentImgMain.y;
         cutImagePositionY = 173.5;//臉朝右
         break;
         case "ArrowDown":
+            if(playing == 0){
+                Timer = window.setInterval(function(){
+                    sec++;
+                    $("#gameScore").html(`~ ~ Score: ${score}/${total} - - - - - - - - - - - Time: ${sec} ~ ~`);
+                },1000);
+                playing = 1;
+            }
         targetImg.x = currentImgMain.x;
         targetImg.y = currentImgMain.y + gridLength;
         cutImagePositionY = 0;//臉朝下
@@ -168,7 +193,7 @@ $(document).on("keydown",function(event){
         default://其他按鍵不處理
         return; }
         //確認目標位置不會超過地圖
-    if(targetImg.x<=750 && targetImg.x>=0 && targetImg.y<=750 && targetImg.y>=0){
+    if(targetImg.x<=630 && targetImg.x>=0 && targetImg.y<=630 && targetImg.y>=0){
         targetBlock.x = targetImg.y / gridLength;
         targetBlock.y = targetImg.x / gridLength; 
     }
@@ -176,6 +201,7 @@ $(document).on("keydown",function(event){
     {
         targetBlock.x = -1;
         targetBlock.y = -1; 
+        $("#popup").html(`Stop! There's no way to go forward`);
     }
     ctx.clearRect(currentImgMain.x, currentImgMain.y, gridLength, gridLength);
     if(targetBlock.x!=-1 && targetBlock.y!=-1){
@@ -185,41 +211,64 @@ $(document).on("keydown",function(event){
         currentImgMain.y = targetImg.y;
         break;
         case 1: // 有障礙物(不可移動) 
+        $("#popup").html(`Stop! There's no way to go forward`);
         break;
         case 2: // 終點(可移動) 
         currentImgMain.x = targetImg.x;
         currentImgMain.y = targetImg.y;
         if(total == score){
-            $("#game").html("Congratulations! You Won!");
+            pass = 1;
+            $("#game").html("Congratulations! You Succeeded!");
+            $("#popup").html(' ');
             clearInterval(Timer);
+        }else if(currentImgMain.x !=0 && currentImgMain.y !=0){
+            $("#popup").html('Uh oh, Not yet...There must be something missing');
         }
         break;
-        case 3: // 敵人(不可移動) 
+        case 4: // rock
+        $("#popup").html(`Stop! There's no way to go forward`);
         break;
         case 5: // items
         score++;
+        if(total - score==0){
+            $("#popup").html(`Great! You may now go to the exit at bottom right`);
+        }else{
+            $("#popup").html(`Great! ${total - score} more items to go.`);
+        }
+        
+        
         currentImgMain.x = targetImg.x;
         currentImgMain.y = targetImg.y;
         mapArray[targetBlock.x][targetBlock.y] = 0;
         ctx.clearRect(currentImgMain.x, currentImgMain.y, gridLength, gridLength);
         break;
-        case 6: // 一般道路(可移動) 
+        case 6: // 一般道路, but enemy moving
         currentImgMain.x = targetImg.x;
         currentImgMain.y = targetImg.y;
         break;
         case 7: // items
         score++
+        $("#popup").html(`Great! ${total - score} more items to go.`);
         currentImgMain.x = targetImg.x;
         currentImgMain.y = targetImg.y;
         mapArray[targetBlock.x][targetBlock.y] = 0;
         ctx.clearRect(currentImgMain.x, currentImgMain.y, gridLength, gridLength);
         break;
+        case 8: 
+        die = 1;
+        $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
+        break;
+        case 9: 
+        die = 1;
+        $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
+        break;
     } 
     }
     //清空主角原本所在的位置
     $("#gameScore").html(`~ ~ Score: ${score}/${total}   - - - - - - - - - - -  Time: ${sec} ~ ~ `);
-    ctx.drawImage(imgMain, 0,cutImagePositionY,86.75,86.75,currentImgMain.x,currentImgMain.y,gridLength,gridLength);
+    ctx.drawImage(imgMain, 0,cutImagePositionY,86.75,86.75,currentImgMain.x,currentImgMain.y,gridLength,gridLength);}
 });
+
 
 function moving(){
 
@@ -250,19 +299,44 @@ function moving(){
     var intervalGame=window.setInterval(function(){
         var a = 0;
         if(count[a]%2 == 0){
+            if(mapArray[p1[a][1]][p1[a][0]]!=9 && mapArray[p1[a][1]][p1[a][0]]!=6){
+                mapArray[p1[a][1]][p1[a][0]] = 7;
+            }else{
+                mapArray[p1[a][1]][p1[a][0]] = 0;
+            }
             ctx.clearRect(p1[a][0]*gridLength,p1[a][1]*gridLength, gridLength, gridLength);
             if(mapArray[p1[a][1]][p1[a][0]] == 7){
-                ctx.drawImage(imgMountain,guard[a][0],guard[a][1],32,32,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
+                ctx.drawImage(imgMountain,guard[a+2][0],guard[a+2][1],32,32,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
             }
             ctx.drawImage(imgEnemy, 109,40,100,135,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
-            if(currentImgMain.x==0*gridLength&&currentImgMain.y==2*gridLength){
+            if(currentImgMain.x==p2[a][0]*gridLength&&currentImgMain.y==p2[a][1]*gridLength){
+                die = 1;
                 $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
             }
+            if(mapArray[p2[a][1]][p2[a][0]]!=0 && mapArray[p2[a][1]][p2[a][0]]!=6){
+                mapArray[p2[a][1]][p2[a][0]] = 8;
+            }else{
+                mapArray[p2[a][1]][p2[a][0]] = 9;
+            }
         }else{
+            if(mapArray[p2[a][1]][p2[a][0]]!=9 && mapArray[p2[a][1]][p2[a][0]]!=6){
+                mapArray[p2[a][1]][p2[a][0]] = 7;
+            }else{
+                mapArray[p2[a][1]][p2[a][0]] = 0;
+            }
             ctx.clearRect(p2[a][0]*gridLength,p2[a][1]*gridLength, gridLength, gridLength);
+            if(mapArray[p2[a][1]][p2[a][0]] == 7){
+                ctx.drawImage(imgMountain,guard[a][0],guard[a][1],32,32,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
+            }
             ctx.drawImage(imgEnemy, 109,40,100,135,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
             if(currentImgMain.x==p1[a][0]*gridLength&&currentImgMain.y==p1[a][1]*gridLength){
+                die = 1;
                 $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
+            }
+            if(mapArray[p1[a][1]][p1[a][0]]!=0 && mapArray[p1[a][1]][p1[a][0]]!=6){
+                mapArray[p1[a][1]][p1[a][0]] = 8;
+            }else{
+                mapArray[p1[a][1]][p1[a][0]] = 9;
             }
         }
         count[0]++;
@@ -272,22 +346,44 @@ function moving(){
     var intervalGame02=window.setInterval(function(){
         var a = 1;
         if(count[a]%2 == 0){
+            if(mapArray[p1[a][1]][p1[a][0]]!=9 && mapArray[p1[a][1]][p1[a][0]]!=6){
+                mapArray[p1[a][1]][p1[a][0]] = 7;
+            }else{
+                mapArray[p1[a][1]][p1[a][0]] = 0;
+            }
             ctx.clearRect(p1[a][0]*gridLength,p1[a][1]*gridLength, gridLength, gridLength);
             if(mapArray[p1[a][1]][p1[a][0]] == 7){
                 ctx.drawImage(imgMountain,guard[a][0],guard[a][1],32,32,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
             }
             ctx.drawImage(imgEnemy, 7,40,104,135,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
             if(currentImgMain.x==p2[a][0]*gridLength&&currentImgMain.y==p2[a][1]*gridLength){
+                die = 1;
                 $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
             }
+            if(mapArray[p2[a][1]][p2[a][0]]!=0 && mapArray[p2[a][1]][p2[a][0]]!=6){
+                mapArray[p2[a][1]][p2[a][0]] = 8;
+            }else{
+                mapArray[p2[a][1]][p2[a][0]] = 9;
+            }
         }else{
+            if(mapArray[p2[a][1]][p2[a][0]]!=9 && mapArray[p2[a][1]][p2[a][0]]!=6){
+                mapArray[p2[a][1]][p2[a][0]] = 7;
+            }else{
+                mapArray[p2[a][1]][p2[a][0]] = 0;
+            }
             ctx.clearRect(p2[a][0]*gridLength,p2[a][1]*gridLength, gridLength, gridLength);
             if(mapArray[p2[a][1]][p2[a][0]] == 7){
-                ctx.drawImage(imgMountain,guard[a][0],guard[a][1],32,32,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
+                ctx.drawImage(imgMountain,guard[a-1][0],guard[a-1][1],32,32,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
             }
             ctx.drawImage(imgEnemy, 7,40,104,135,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
             if(currentImgMain.x==p1[a][0]*gridLength&&currentImgMain.y==p1[a][1]*gridLength){
+                die = 1;
                 $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
+            }
+            if(mapArray[p1[a][1]][p1[a][0]]!=0 && mapArray[p1[a][1]][p1[a][0]]!=6){
+                mapArray[p1[a][1]][p1[a][0]] = 8;
+            }else{
+                mapArray[p1[a][1]][p1[a][0]] = 9;
             }
         }
         count[a]++;
@@ -297,22 +393,44 @@ function moving(){
     var intervalGame03=window.setInterval(function(){
         var a = 2;
         if(count[a]%2 == 0){
+            if(mapArray[p1[a][1]][p1[a][0]]!=9 && mapArray[p1[a][1]][p1[a][0]]!=6){
+                mapArray[p1[a][1]][p1[a][0]] = 7;
+            }else{
+                mapArray[p1[a][1]][p1[a][0]] = 0;
+            }
             ctx.clearRect(p1[a][0]*gridLength,p1[a][1]*gridLength, gridLength, gridLength);
             if(mapArray[p1[a][1]][p1[a][0]] == 7){
                 ctx.drawImage(imgMountain,guard[a][0],guard[a][1],32,32,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
             }
             ctx.drawImage(imgEnemy, 274,55,83,120,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
             if(currentImgMain.x==p2[a][0]*gridLength&&currentImgMain.y==p2[a][1]*gridLength){
+                die = 1;
                 $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
             }
+            if(mapArray[p2[a][1]][p2[a][0]]!=0 && mapArray[p2[a][1]][p2[a][0]]!=6){
+                mapArray[p2[a][1]][p2[a][0]] = 8;
+            }else{
+                mapArray[p2[a][1]][p2[a][0]] = 9;
+            }
         }else{
+            if(mapArray[p2[a][1]][p2[a][0]]!=9 && mapArray[p2[a][1]][p2[a][0]]!=6){
+                mapArray[p2[a][1]][p2[a][0]] = 7;
+            }else{
+                mapArray[p2[a][1]][p2[a][0]] = 0;
+            }
             ctx.clearRect(p2[a][0]*gridLength,p2[a][1]*gridLength, gridLength, gridLength);
             if(mapArray[p2[a][1]][p2[a][0]] == 7){
                 ctx.drawImage(imgMountain,guard[a-1][0],guard[a-1][1],32,32,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
             }
             ctx.drawImage(imgEnemy, 274,55,83,120,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
             if(currentImgMain.x==p1[a][0]*gridLength&&currentImgMain.y==p1[a][1]*gridLength){
+                die = 1;
                 $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
+            }
+            if(mapArray[p1[a][1]][p1[a][0]]!=0 && mapArray[p1[a][1]][p1[a][0]]!=6){
+                mapArray[p1[a][1]][p1[a][0]] = 8;
+            }else{
+                mapArray[p1[a][1]][p1[a][0]] = 9;
             }
         }
         count[a]++;
@@ -323,10 +441,11 @@ function moving(){
         if(count[a]%2 == 0){
             ctx.clearRect(p1[a][0]*gridLength,p1[a][1]*gridLength, gridLength, gridLength);
             if(mapArray[p1[a][1]][p1[a][0]] == 7){
-                ctx.drawImage(imgMountain,guard[a][0],guard[a][1],32,32,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
+                ctx.drawImage(imgMountain,guard[a-1][0],guard[a-1][1],32,32,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
             }
             ctx.drawImage(imgEnemy, 109,40,100,135,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
             if(currentImgMain.x==p2[a][0]*gridLength&&currentImgMain.y==p2[a][1]*gridLength){
+                die = 1;
                 $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
             }
         }else{
@@ -336,6 +455,7 @@ function moving(){
             }
             ctx.drawImage(imgEnemy, 109,40,100,135,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
             if(currentImgMain.x==p1[a][0]*gridLength&&currentImgMain.y==p1[a][1]*gridLength){
+                die = 1;
                 $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
             }
         }
@@ -345,6 +465,11 @@ function moving(){
     var intervalGame04=window.setInterval(function(){
         var a = 4;
         if(count[a]%2 == 0){
+            if(mapArray[p1[a][1]][p1[a][0]]!=9 && mapArray[p1[a][1]][p1[a][0]]!=6){
+                mapArray[p1[a][1]][p1[a][0]] = 7;
+            }else{
+                mapArray[p1[a][1]][p1[a][0]] = 0;
+            }
             ctx.clearRect(p1[a][0]*gridLength,p1[a][1]*gridLength, gridLength, gridLength);
             if(mapArray[p1[a][1]][p1[a][0]] == 7){
                 ctx.drawImage(imgMountain,guard[a-4][0],guard[a-4][1],32,32,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
@@ -353,14 +478,30 @@ function moving(){
             if(currentImgMain.x==p2[a][0]*gridLength&&currentImgMain.y==p2[a][1]*gridLength){
                 $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
             }
+            if(mapArray[p2[a][1]][p2[a][0]]!=0 && mapArray[p2[a][1]][p2[a][0]]!=6){
+                mapArray[p2[a][1]][p2[a][0]] = 8;
+            }else{
+                mapArray[p2[a][1]][p2[a][0]] = 9;
+            }
         }else{
+            if(mapArray[p2[a][1]][p2[a][0]]!=9 && mapArray[p2[a][1]][p2[a][0]]!=6){
+                mapArray[p2[a][1]][p2[a][0]] = 7;
+            }else{
+                mapArray[p2[a][1]][p2[a][0]] = 0;
+            }
             ctx.clearRect(p2[a][0]*gridLength,p2[a][1]*gridLength, gridLength, gridLength);
             if(mapArray[p2[a][1]][p2[a][0]] == 7){
                 ctx.drawImage(imgMountain,guard[a-4][0],guard[a-4][1],32,32,p2[a][0]*gridLength,p2[a][1]*gridLength,gridLength,gridLength);
             }
             ctx.drawImage(imgEnemy, 7,40,104,135,p1[a][0]*gridLength,p1[a][1]*gridLength,gridLength,gridLength);
             if(currentImgMain.x==p1[a][0]*gridLength&&currentImgMain.y==p1[a][1]*gridLength){
+                die = 1;
                 $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
+            }
+            if(mapArray[p1[a][1]][p1[a][0]]!=0 && mapArray[p1[a][1]][p1[a][0]]!=6){
+                mapArray[p1[a][1]][p1[a][0]] = 8;
+            }else{
+                mapArray[p1[a][1]][p1[a][0]] = 9;
             }
         }
         count[a]++;
