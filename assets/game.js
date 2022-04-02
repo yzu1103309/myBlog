@@ -262,7 +262,13 @@ $(document).on("keydown",function(event){
         die = 1;
         $("#work4").html("Uh-Oh, You're Dead.  Be CAREFUL Next Time");
         break;
-    } 
+    }
+    
+        $("#popup").addClass("changed");
+        setTimeout(function(){
+        
+        $("#popup").removeClass("changed");
+        },1000); 
     }
     //清空主角原本所在的位置
     $("#gameScore").html(`~ ~ Score: ${score}/${total}   - - - - - - - - - - -  Time: ${sec} ~ ~ `);
