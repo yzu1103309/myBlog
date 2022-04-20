@@ -73,7 +73,7 @@
     #### 3. 編輯課表以`checkbox` 方式呈現，並以csv格式存於後端
     #### 4. 課程分成四大類，可分類查詢，也可查詢全部，按下搜尋鍵後自動篩選掉衝堂之時段
     #### 5. Google按鈕：可以一鍵連到Google查詢課程評價。不須花費時間打字
-    #### 6. 2022/四月更新：新增[Update網頁](http://140.138.242.111/courses/updateData.html)，從 Portal API 獲取課程 `.json` 並精簡成系統可用之CSV，管理員可更輕鬆的更新課程清單<br /><br />
+    #### 6. 2022/四月更新：新增[Update網頁](./updateData.html)，從 Portal API 獲取課程 `.json` 並精簡成系統可用之CSV，管理員可更輕鬆的更新課程清單<br /><br />
 ## 3 -「點餐管理系統」
 > ### 此作品為本學期個人完成，<i>預計作為本課期末專題</i>
 <div style="background-color: #E9E9E9; font-size: 1.1em; padding: 1.5em; border-radius: 5px;"><span style="font-size: 1.2em;">系統目的：</span><div style="margin-top: 0.5em;padding-left:2em;">現今點餐系統（POS機）已經是餐廳不可或缺的一部分；但除了在麥當勞或是春水堂這些大企業之外，很少在普通餐廳看到整合優良的點餐流程和系統。很多小餐廳的運作方式都是：在櫃台擺設一台點餐機，接下來就靠印出紙本單，或是將訂單以口頭唸出的方式，來通知廚房製作人員需要製作哪些餐點。但這樣既不方便，也不環保（不衛生）。為了解決以上種種問題，我決定用網站程式的形式實行點餐系統。這樣就可以不限作業系統，在多裝置執行，你只需要一個內網Server主機、一個路由器、以及Browser。<span style="padding-left: 2em;"></span></div></div> 
