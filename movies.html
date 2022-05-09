@@ -15,10 +15,10 @@
                 font-weight: bold;
             }
             .mTitle{
-                width: 550px;
+                width: 500px;
             }
             .mID{
-                width: 350px;
+                width: 230px;
             }
             .mType{
                 width: 170px;
@@ -29,6 +29,7 @@
                 text-align: center;
                 border: grey 2px solid;
                 border-radius: 30px;
+                box-shadow: 5px 5px 10px grey;
             }
             #send{
                 background: #FAD7A0 ;
@@ -39,6 +40,13 @@
                 height: 40px;
                 font-weight: bold;
                 cursor: pointer;
+                box-shadow: 5px 5px 10px grey;
+            }
+            #send:hover, #search:hover, .btn:hover{
+                box-shadow: 5px 5px 10px black;
+            }
+            #send:active, #search:active, .btn:active{
+                box-shadow: none;
             }
             .btn{
                 height: 30px;
@@ -46,6 +54,15 @@
                 font-size: 20px;
                 border-radius: 10px;
                 font-weight: bold;
+                color: black;
+                margin: 5px 0px;
+                box-shadow: 5px 5px 10px grey;
+                cursor: pointer;
+            }
+            .copy{
+                width: 20px;
+                margin-left: 10px;
+                cursor: pointer;
             }
         </style>
     </head>
@@ -56,22 +73,46 @@
 
             <div style="font-size: 25px; font-weight: bold; padding:20px; ">
                 Title of a Movie / TV Series (Use English)：
-                <input type="text" id="search" style="width: 300px; margin-right: 30px;" />
-
-                <input id="send" type="button" value="Search" onclick="start()" >
+                
+                <div style="margin: 20px 0 0 70px;">
+                    <input type="text" id="search" style="width: 300px; margin-right: 10px;" />
+                    <input id="send" type="button" value="Search" onclick="start()" >
+                </div>
+                
             </div>
-            <div id="output" style=" margin: 30px;">
+            <div id="output" style=" margin:20px 0 0 20px;">
 
-                    <!--<table style="margin: 30px;">
+            <h2>
+                Search for any movie / TV Series you want by title!
+                <br />And you can easily copy the IMDB ID or find torrents from RARBG.
+                <br /><br />
+                <a href="javascript:window.open('https://www.youtube.com/watch?v=6PWUCFmOQwQ')">Click Here</a> to see how torrents work if you don't know what it is.<br />
+                <a href="javascript:window.open('https://www.qbittorrent.org/')">qBittorrent</a> is the recommended torrent client, which is fast & easy to use.<br />
+                <br /><br />
+                <span style="color: Red;">Warning: There are risks Downloading / Sharing files using torrents<br />
+                It might cause some legal issues, and we're not responsible for that!</span>
+                
+            </h2>
+                    <!-- <table>
                         <tr>
                             <td class="mType">TV Series</td>
-                            <td class="mTitle">Friends (1994)</td>
+                            <td class="mTitle">Friends (1994)<img class="copy" src="copy.png" onclick="copy('tt0120889')" title="copy ID"></td>
                             <td class="mID">
-                                <a href="https://www.imdb.com/title/">tt1234578</a>
-                                <input type="button" id="copy" value="copy" onclick="copy('tt1234578')" >
+                                <input type="button" style="background: #F5C518; color: black;" class="btn" value="IMDB" onclick="window.open('https://www.imdb.com/title/tt0120889')" >
+                                <input type="button" style="background  : #3860BB; color: white;" class="btn" value="RARBG" onclick="window.open('https://rarbg.to/torrents.php?search=tt0120889')" >
+                                
                             </td>
                         </tr>
-                    </table>-->
+                        <tr>
+                            <td class="mType">Movies</td>
+                            <td class="mTitle">Friends Reunion (2020)<img class="copy" src="copy.png" onclick="copy('tt0120889')"></td>
+                            <td class="mID">
+                                <input type="button" style="background: #F5C518; color: black;" class="btn" value="IMDB" onclick="window.open('https://www.imdb.com/title/tt0120889')" >
+                                <input type="button" style="background  : #3860BB; color: white;" class="btn" value="RARBG" onclick="window.open('https://rarbg.to/torrents.php?search=tt0120889')" >
+                                
+                            </td>
+                        </tr>
+                    </table> -->
 
             </div>
         </div>
@@ -86,7 +127,7 @@
                     $("#output").html("<h1>Please input something</h1>");
                 }else
                 {
-                    $("#output").html("<h1>Connecting to IMDB, Please Wait......</h1>");
+                    $("#output").html("<h1>Connecting to IMDB database, Please Wait......</h1>");
                     $.ajax({
                         url: `https://imdb-api.com/API/SearchTitle/k_fds39lo6/${input}`,
                         type: "GET",
@@ -97,24 +138,44 @@
                                 var title = item.title;
                                 var id = item.id;
                                 title += " " + item.description.match(/\(\d{4}\)/);
+                                console.log(item.description);
                                 var type = item.description.match("TV Series");
+                                
+                                if(type == null){
+                                    type = item.description.match("TV Special");
+                                }
+                                if(type == null){
+                                    type = item.description.match("Podcast");
+                                }
+                                if(type == null){
+                                    type = item.description.match("Short");
+                                }
                                 if(type == null){
                                     type = "Movie";
                                 }
-                                out += `<tr>
+                                
+                                if(type != "Podcast"){
+                                    out += `<tr>
                                     <td class="mType">${type}</td>
-                                    <td class="mTitle">${title}</td>
+                                    <td class="mTitle">${title}<img class="copy" src="copy.png" onclick="copy('${id}')" title="copy ID"></td>
                                     <td class="mID">
                                     <input type="button" style="background: #F5C518;" class="btn" value="IMDB" onclick="window.open('https://www.imdb.com/title/${id}')" >
                                     <input type="button" style="background  : #3860BB; color: white;" class="btn" value="RARBG" onclick="window.open('https://rarbg.to/torrents.php?search=${id}')" >
-                                    <input type="button" class="btn" value="Copy ID" onclick="copy('${id}')" >
                                     </td>
                                     </tr>`;
+                                }
+                                
                             });
-                            out = "<table>" + out + "</table>";
                             if(out == ""){
                                 $("#output").html("<h1>No Data! ! ! Please Check Your Input......</h1>");
                             }else{
+                                out = `<table>
+                                <tr>
+                                    <td class="mType">Type</td>
+                                    <td class="mTitle">Title (Copy ID)</td>
+                                    <td class="mID">Options</td>
+                                </tr>` + out + "</table>";
+
                                 $("#output").html(`${out}`);
                             }
                         },
