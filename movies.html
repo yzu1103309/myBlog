@@ -15,10 +15,10 @@
                 font-weight: bold;
             }
             .mTitle{
-                width: 500px;
+                width: 490px;
             }
             .mID{
-                width: 230px;
+                width: 245px;
             }
             .mType{
                 width: 170px;
@@ -51,7 +51,7 @@
             }
             .btn{
                 height: 30px;
-                width: 100px;
+                width: 111px;
                 font-size: 20px;
                 border-radius: 10px;
                 font-weight: bold;
@@ -95,9 +95,14 @@
                 
             </h2>
                     <!-- <table>
+                        <tr style="background: #D7DBDD;">
+                            <td class="mType">Type</td>
+                            <td class="mTitle">Title (Copy ID)</td>
+                            <td class="mID">Options</td>
+                        </tr>
                         <tr>
                             <td class="mType">TV Series</td>
-                            <td class="mTitle">Friends (1994)<img class="copy" src="copy.png" onclick="copy('tt0120889')" title="copy ID"></td>
+                            <td class="mTitle">Friends (1994)<img class="copy" src="copy.png" onclick="copy('123')" title="copy ID"></td>
                             <td class="mID">
                                 <input type="button" style="background: #F5C518; color: black;" class="btn" value="IMDB" onclick="window.open('https://www.imdb.com/title/tt0120889')" >
                                 <input type="button" style="background  : #3860BB; color: white;" class="btn" value="RARBG" onclick="window.open('https://rarbg.to/torrents.php?search=tt0120889')" >
@@ -171,7 +176,7 @@
                                 $("#output").html("<h1>No Data! ! ! Please Check Your Input......</h1>");
                             }else{
                                 out = `<table>
-                                <tr>
+                                <tr  style="background: #D7DBDD;">
                                     <td class="mType">Type</td>
                                     <td class="mTitle">Title (Copy ID)</td>
                                     <td class="mID">Options</td>
@@ -189,6 +194,7 @@
 
             function copy(str){
                 navigator.clipboard.writeText(str);
+                alert("COPIED!");
             }
             
         </script>
