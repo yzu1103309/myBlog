@@ -16,7 +16,11 @@
                         window.location.href = URL+"order/";
                     },
                     error : function(){
-                        $( "#message" ).html("Connection Failed, please retry later or contact the administrator for assistance.<br /><br />目前無法導向到伺服器，請晚點再試一次，如果持續錯誤，請聯繫管理員<br /><br />s1103309@mail.yzu.edu.tw");
+                        $( "#message" ).html("Connection Failed, please retry later or contact the administrator for assistance."
+                        +"<br /><br />目前無法導向到伺服器，請晚點再試一次，如果持續錯誤，請聯繫管理員"
+                        +"<br /><br />s1103309@mail.yzu.edu.tw"
+                        +"<br /><br /><a href='javascript:window.location.reload()'>點我重試連線 click here to retry</a>"
+                        );
                     }
                 });
             }
