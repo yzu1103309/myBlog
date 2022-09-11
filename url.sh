@@ -15,6 +15,18 @@ cat /home/wilson/Documents/Hugo/myBlog/js/url.js
 
 echo
 
+cd /home/wilson/Documents/Hugo/myBlog/
 
+git status
+
+echo
+
+git commit -a -m "update ngrok url"
+
+echo
+
+git status
+
+echo
 
 read -p $'\e[1;33m[Enter結束程序]\e[1;37m' continue
