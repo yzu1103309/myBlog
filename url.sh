@@ -21,6 +21,10 @@ git status
 
 echo
 
+git add ./js/url.js
+
+echo
+
 git commit -a -m "update ngrok url"
 
 echo
