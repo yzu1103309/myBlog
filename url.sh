@@ -25,6 +25,10 @@ git commit -a -m "update ngrok url"
 
 echo
 
+git push
+
+echo
+
 git status
 
 echo
