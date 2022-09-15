@@ -30,11 +30,11 @@ case $yn in
             ;;
 
     [Nn] )  echo
-            echo nothing was committed
+            echo Nothing was committed.
             echo
             ;;
     * ) echo
-        echo nothing was committed
+        echo Wrong expression.
         echo
         ;;
 esac
