@@ -27,12 +27,12 @@ case $yn in
             echo
             git status
             echo
-            break;;
+            ;;
 
     [Nn] )  echo
             echo nothing was committed
             echo
-            break;;
+            ;;
     * ) echo
         echo nothing was committed
         echo
