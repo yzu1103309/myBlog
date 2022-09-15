@@ -15,22 +15,29 @@ cat /home/wilson/Documents/Hugo/myBlog/js/url.js
 
 echo
 
-cd /home/wilson/Documents/Hugo/myBlog/
+read -p $'\e[0;34mProceed to commit? [y/n]\e[1;37m' yn
 
-git status
+case $yn in
+    [Yy] )  cd /home/wilson/Documents/Hugo/myBlog/
+            git status
+            echo
+            git commit -a -m "update ngrok url"
+            echo
+            git push
+            echo
+            git status
+            echo
+            break;;
 
-echo
+    [Nn] )  echo
+            echo nothing was committed
+            echo
+            break;;
+    * ) echo
+        echo nothing was committed
+        echo
+        ;;
+esac
 
-git commit -a -m "update ngrok url"
-
-echo
-
-git push
-
-echo
-
-git status
-
-echo
 
 read -p $'\e[1;33m[Enter結束程序]\e[1;37m' continue
