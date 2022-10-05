@@ -7,8 +7,33 @@
         <script src="../js/url.js"></script>
         <script>
             var folder = 'jclin/';
-
-            function load(){
+            function load()
+            {
+                $.ajax({
+                    url: IP+"TestConnection.php",
+                    type: "POST",
+                    datatype: "html",
+                    success: function( output ) {
+                        $( "#message" ).html(output);
+                        window.location.href = IP+folder;
+                    },
+                    error : function(){
+                        var second = 5;
+                        var interval = setInterval(function()
+                        {
+                            $( "#message" ).html("您使用的不是校內網路，"+second+"秒後測試外網連線");
+                            second--;
+                            if(second == 0)
+                            {
+                                clearInterval(interval);
+                            }
+                        }, 1000);
+                        var TimeOut = setTimeout(external,5000);
+                    }           
+                });
+            }
+            function external()
+            {
                 $.ajax({
                     url: URL+"TestConnection.php",
                     type: "POST",
