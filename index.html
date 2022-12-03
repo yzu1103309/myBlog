@@ -102,20 +102,20 @@
 								<header>
 									<h2>Contact Me</h2>
 								</header>
-								<form action="#" method="post">
+								<form action="javascript:sub()" method="post">
 									<div>
 										<div class="row">
 											<div class="col-6 col-12-medium">
-												<input type="text" name="name" placeholder="Name" />
+												<input type="text" id="name" name="name" placeholder="Name" />
 											</div>
 											<div class="col-6 col-12-medium">
-												<input type="text" name="email" placeholder="Email" />
+												<input type="email" id="mail" name="email" placeholder="Email" />
 											</div>
 											<div class="col-12">
-												<input type="text" name="subject" placeholder="Subject" />
+												<input type="text" id="subject" name="subject" placeholder="Subject" />
 											</div>
 											<div class="col-12">
-												<textarea name="message" placeholder="Message" rows="6"></textarea>
+												<textarea name="message" id="message" placeholder="Message" rows="6"></textarea>
 											</div>
 											<div class="col-12">
 												<input type="submit" value="Send Message" />
@@ -226,6 +226,8 @@
 			<script src="assets/works.js"></script>
 			<script src="assets/test.js"></script>
 			<script src="assets/game.js"></script>
+			<script src="js/sub.js"></script>
+			<script src="js/url.js"></script>
 			<script src="https://www.youtube.com/iframe_api"></script>
 			<!-- Lightweight client-side loader that feature-detects and load polyfills only when necessary -->
 			<script src="assets/js/webcomponents-loader.min.js"></script>

@@ -136,13 +136,15 @@ $(document).on("keydown",function(event){
     };
     targetBlock = { //主角的目標(對應2維陣列)
         "x":-1,
-        "y":-1 }
-        event.preventDefault();
+        "y":-1 
+    };
+    
     //避免鍵盤預設行為發生，如捲動/放大/換頁...
     //判斷使用者按下什麼並推算目標座標
     if(pass == 0 && die == 0){
     switch(event.code){
         case "ArrowLeft":
+            event.preventDefault();
             if(playing == 0){
                 Timer = window.setInterval(function(){
                     sec++;
@@ -155,6 +157,7 @@ $(document).on("keydown",function(event){
         cutImagePositionY = 86.75;//臉朝左
         break;
         case "ArrowUp":
+            event.preventDefault();
             if(playing == 0){
                 Timer = window.setInterval(function(){
                     sec++;
@@ -167,6 +170,7 @@ $(document).on("keydown",function(event){
         cutImagePositionY = 260.25;//臉朝上
         break;
         case "ArrowRight":
+            event.preventDefault();
             if(playing == 0){
                 Timer = window.setInterval(function(){
                     sec++;
@@ -179,6 +183,7 @@ $(document).on("keydown",function(event){
         cutImagePositionY = 173.5;//臉朝右
         break;
         case "ArrowDown":
+            event.preventDefault();
             if(playing == 0){
                 Timer = window.setInterval(function(){
                     sec++;
